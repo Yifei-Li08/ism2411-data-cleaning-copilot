@@ -23,3 +23,14 @@ def clean_product_info(df):
     df['prodname'] = df['prodname'].str.strip()
     df['category'] = df['category'].str.strip()
     return df
+
+# Function generated with GitHub Copilot and slightly modified
+# AI uses the wrong column name ‘quantity’ instead of 'qty'
+# AI did not realize that the missing values are represented as empty strings or spaces
+# Handle missing prices, quantities, and dates_sold (drop rows with missing values)
+# Because missing values are dangerous for analysis and should be removed
+
+def handle_missing_values(df):
+    df = df.replace(r'^\s*$', np.nan, regex=True)  # Replace empty strings with NaN
+    df = df.dropna(subset=['price', 'qty', 'date_sold'])
+    return df
