@@ -20,8 +20,8 @@ def clean_column_names(df):
 # Strip leading/trailing whitespace from product names and categories
 # Because whitespace can cause issues with grouping and analysis
 def clean_product_info(df):
-    df['prodname'] = df['prodname'].str.strip()
-    df['category'] = df['category'].str.strip()
+    df['prodname'] = df['prodname'].str.replace('"', '', regex=False).str.strip()
+    df['category'] = df['category'].str.replace('"', '', regex=False).str.strip()
     return df
 
 # Function generated with GitHub Copilot and slightly modified
