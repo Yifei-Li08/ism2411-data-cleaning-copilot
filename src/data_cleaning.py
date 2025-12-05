@@ -34,3 +34,11 @@ def handle_missing_values(df):
     df = df.replace(r'^\s*$', np.nan, regex=True)  # Replace empty strings with NaN
     df = df.dropna(subset=['price', 'qty', 'date_sold'])
     return df
+
+# Remove rows with clearly invalid values (negative quantity, negative price)
+# Because negative values for price or quantity are not realistic in sales data
+def remove_invalid_rows(df):
+    df['price'] = df['price'].astype(float)
+    df['qty'] = df['qty'].astype(float)
+    df = df[(df['price'] >= 0) & (df['qty'] >= 0)]
+    return df
