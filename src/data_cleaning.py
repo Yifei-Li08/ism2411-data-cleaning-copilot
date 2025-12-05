@@ -13,3 +13,13 @@ def load_data(file_path: str):
 def clean_column_names(df):
     df.columns = df.columns.str.strip().str.lower().str.replace(' ', '_')
     return df
+
+
+# Function generated with GitHub Copilot and slightly modified
+# AI uses the wrong column name ‘product_name’ instead of 'prodname'
+# Strip leading/trailing whitespace from product names and categories
+# Because whitespace can cause issues with grouping and analysis
+def clean_product_info(df):
+    df['prodname'] = df['prodname'].str.strip()
+    df['category'] = df['category'].str.strip()
+    return df
